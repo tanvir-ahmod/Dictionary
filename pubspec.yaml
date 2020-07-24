@@ -25,6 +25,8 @@ dependencies:
     sdk: flutter
   hexcolor: ^1.0.4
   flutter_signature_pad: ^2.0.2
+  firebase_ml_vision: ^0.9.4
+  path_provider: ^1.5.1
 
 
   # The following adds the Cupertino Icons font to your application.
