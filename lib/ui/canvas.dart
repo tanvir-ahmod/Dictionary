@@ -9,6 +9,7 @@ import 'package:flutter_signature_pad/flutter_signature_pad.dart';
 import 'dart:ui' as ui;
 
 import 'package:hexcolor/hexcolor.dart';
+import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
 class CustomCanvas extends StatefulWidget {
@@ -111,7 +112,6 @@ class _CustomCanvasState extends State<CustomCanvas> {
         SizedBox(
           height: 5,
         ),
-
       ]),
     );
   }
@@ -146,6 +146,9 @@ class _CustomCanvasState extends State<CustomCanvas> {
   }
 }
 
+
+
+
 class _WatermarkPaint extends CustomPainter {
   final String price;
   final String watermark;
@@ -153,9 +156,7 @@ class _WatermarkPaint extends CustomPainter {
   _WatermarkPaint(this.price, this.watermark);
 
   @override
-  void paint(ui.Canvas canvas, ui.Size size) {
-
-  }
+  void paint(ui.Canvas canvas, ui.Size size) {}
 
   @override
   bool shouldRepaint(_WatermarkPaint oldDelegate) {
