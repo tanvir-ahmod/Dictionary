@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dictionary/bloc/dictionary_event.dart';
 import 'package:dictionary/bloc/dictionary_state.dart';
 import 'package:dictionary/repository/dictionary_repository.dart';
+import 'package:dictionary/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,14 +33,17 @@ class DictionaryBloc extends Bloc<DictionaryEvent, DictionaryState> {
     } else if (event is GetMeaning) {
       yield* _getMeaningToState(event);
     } else if (event is ClearMeaning) {
-      yield MeaningDetectedState("");
+      yield MeaningDetectedState(textKey: "", textMeaning: "");
     }
   }
 
   Stream<DictionaryState> _getMeaningToState(
       GetMeaning getMeaningEvent) async* {
-    String meaning = await repository.getMeaning(getMeaningEvent.imageFile);
-    print('Meaning $meaning');
-    yield MeaningDetectedState(meaning);
+    Map<String, String> textMeaning =
+        await repository.getMeaning(getMeaningEvent.imageFile);
+    print('text meaning $textMeaning');
+    yield MeaningDetectedState(
+        textKey: textMeaning[Constants.TEXT_KEY],
+        textMeaning: textMeaning[Constants.TEXT_MEANING]);
   }
 }

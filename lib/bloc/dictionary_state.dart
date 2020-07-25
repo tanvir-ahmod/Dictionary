@@ -1,12 +1,15 @@
 abstract class DictionaryState {
-  String meaning = "";
+  String textKey = "";
+  String textMeaning = "";
 
-  DictionaryState({this.meaning});
+  DictionaryState({this.textKey, this.textMeaning});
 }
 
 class InitialState extends DictionaryState {}
+
 class InitiatedDatabaseState extends DictionaryState {}
 
 class MeaningDetectedState extends DictionaryState {
-  MeaningDetectedState(String meaning) : super(meaning: meaning);
+  MeaningDetectedState({String textKey, String textMeaning})
+      : super(textKey: textKey, textMeaning: textMeaning);
 }

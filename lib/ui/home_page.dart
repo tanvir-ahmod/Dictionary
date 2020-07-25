@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _getMeaningWidget() {
     return BlocBuilder<DictionaryBloc, DictionaryState>(
         builder: (context, state) {
-      return  state.meaning == null || state.meaning.isEmpty
+      return state.textMeaning == null || state.textMeaning.isEmpty
           ? Container()
           : Container(
               color: Hexcolor(Constants.MEANING_BACKGROUND_COLOR),
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Row(
                 children: <Widget>[
                   Text(
-                    '${state.meaning}',
+                    '${state.textKey}: ${state.textMeaning}',
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
                 ],
