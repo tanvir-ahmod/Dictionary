@@ -4,20 +4,19 @@ import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DictionaryDao {
-
   Future<bool> isFirstTime() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool firstTimeLoad = prefs.getBool(Constants.FIRST_TIME_OPEN);
-    return firstTimeLoad == null || !firstTimeLoad;
+    return firstTimeLoad == null || firstTimeLoad;
   }
 
   Future initializeDatabase() async {
-    var box = await Hive.openBox(Constants.DICTIONARY);
-    String data = await loadAsset();
+    var dictionary = await Hive.openBox(Constants.DICTIONARY);
+    String data = await _loadAsset();
     var arr = data.split('|');
     for (var i = 0; i < arr.length;) {
       if (i + 1 < arr.length && i + 2 < arr.length) {
-        box.put(arr[i + 1], arr[i + 2]);
+        dictionary.put(arr[i + 1], arr[i + 2]);
       }
       i += 2;
     }
@@ -26,7 +25,12 @@ class DictionaryDao {
     print('database initiated');
   }
 
-  Future<String> loadAsset() async {
+  Future<String> _loadAsset() async {
     return await rootBundle.loadString('assets/words.txt');
+  }
+
+  Future<String> getMeaning(String key) async {
+    var dictionary = await Hive.openBox(Constants.DICTIONARY);
+    return dictionary.get(key);
   }
 }

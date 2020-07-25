@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Constants{
-  static const String FIRST_TIME_OPEN = "firstTimeOpen";
-  static const String DICTIONARY = "dictionary";
-  static const penColor = Colors.blueAccent;
-  static const strokeWidth = 5.0;
+class Constants {
+  static const FIRST_TIME_OPEN = "firstTimeOpen";
+  static const DICTIONARY = "dictionary";
+  static const PEN_COLOR = Colors.blueAccent;
+  static const STROKE_WIDTH = 5.0;
+  static const MEANING_BACKGROUND_COLOR = '#5c6bc0';
+  static const BUTTON_BACKGROUND_COLOR = '#3f51b5';
 }

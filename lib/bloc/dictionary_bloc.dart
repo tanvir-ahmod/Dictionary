@@ -13,10 +13,9 @@ class DictionaryBloc extends Bloc<DictionaryEvent, DictionaryState> {
 
   DictionaryBloc({@required this.repository})
       : assert(repository != null),
-        super(null);
+        super(InitialState());
 
   Stream<String> get result => _dictionaryController.stream;
-
 
   void dispose() {
     _dictionaryController.close();
@@ -30,6 +29,17 @@ class DictionaryBloc extends Bloc<DictionaryEvent, DictionaryState> {
         await repository.initializeDatabase();
         yield InitiatedDatabaseState();
       }
+    } else if (event is GetMeaning) {
+      yield* _getMeaningToState(event);
+    } else if (event is ClearMeaning) {
+      yield MeaningDetectedState("");
     }
+  }
+
+  Stream<DictionaryState> _getMeaningToState(
+      GetMeaning getMeaningEvent) async* {
+    String meaning = await repository.getMeaning(getMeaningEvent.imageFile);
+    print('Meaning $meaning');
+    yield MeaningDetectedState(meaning);
   }
 }

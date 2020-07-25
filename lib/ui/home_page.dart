@@ -1,6 +1,7 @@
 import 'package:dictionary/bloc/dictionary_bloc.dart';
 import 'package:dictionary/bloc/dictionary_event.dart';
 import 'package:dictionary/bloc/dictionary_state.dart';
+import 'package:dictionary/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,8 +20,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   Widget build(BuildContext context) {
     // initiate Database
@@ -48,7 +47,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _getCanvasWidget() {
-
     return Container(
       padding: EdgeInsets.only(left: 24.0, right: 24.0),
       margin: EdgeInsets.only(top: 150),
@@ -58,20 +56,25 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _getMeaningWidget() {
-    return Container(
-      color: Hexcolor('#5c6bc0'),
-      width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.only(top: 20, left: 24, right: 24),
-      padding: EdgeInsets.all(50),
-      child: Row(
-        children: <Widget>[
-          Text(
-            'পরীক্ষা\nপরীক্ষা',
-            style: TextStyle(fontSize: 30, color: Colors.white),
-          ),
-        ],
-      ),
-    );
+    return BlocBuilder<DictionaryBloc, DictionaryState>(
+        builder: (context, state) {
+      return  state.meaning == null || state.meaning.isEmpty
+          ? Container()
+          : Container(
+              color: Hexcolor(Constants.MEANING_BACKGROUND_COLOR),
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.only(top: 20, left: 24, right: 24),
+              padding: EdgeInsets.all(50),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    '${state.meaning}',
+                    style: TextStyle(fontSize: 30, color: Colors.white),
+                  ),
+                ],
+              ),
+            );
+    });
   }
 
   Widget _getHistoryWidget() {

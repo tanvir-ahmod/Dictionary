@@ -1,8 +1,10 @@
 import 'dart:io';
 
-import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+import 'package:dictionary/bloc/dictionary_bloc.dart';
+import 'package:dictionary/bloc/dictionary_event.dart';
+import 'package:dictionary/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_signature_pad/flutter_signature_pad.dart';
 import 'dart:ui' as ui;
 
@@ -14,12 +16,8 @@ class CustomCanvas extends StatefulWidget {
   _CustomCanvasState createState() => _CustomCanvasState();
 }
 
+
 class _CustomCanvasState extends State<CustomCanvas> {
-  ByteData _img = ByteData(0);
-  var color = Colors.blueAccent;
-
-  var strokeWidth = 5.0;
-
   final _sign = GlobalKey<SignatureState>();
 
   @override
@@ -72,9 +70,9 @@ class _CustomCanvasState extends State<CustomCanvas> {
         Expanded(
           child: Signature(
             key: _sign,
-            color: color,
+            color: Constants.PEN_COLOR,
             backgroundPainter: _WatermarkPaint(),
-            strokeWidth: strokeWidth,
+            strokeWidth: Constants.STROKE_WIDTH,
           ),
         ),
         Divider(
@@ -88,18 +86,19 @@ class _CustomCanvasState extends State<CustomCanvas> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             IconButton(
-                icon: Icon(Icons.search, size: 40, color: Hexcolor('3f51b5')),
-                onPressed: ()  {
-//                  _detectText();
+                icon: Icon(Icons.search, size: 40, color: Hexcolor(Constants.BUTTON_BACKGROUND_COLOR)),
+                onPressed: () async {
+                  File imageFile = await _getDrawnImage();
+                  BlocProvider.of<DictionaryBloc>(context)
+                      .add(GetMeaning(imageFile));
                 }),
             SizedBox(width: 10),
             IconButton(
-              icon: Icon(Icons.clear, size: 40, color: Hexcolor('3f51b5')),
+              icon: Icon(Icons.clear, size: 40, color: Hexcolor(Constants.BUTTON_BACKGROUND_COLOR)),
               onPressed: () {
                 _sign.currentState.clear();
-                setState(() {
-                  _img = ByteData(0);
-                });
+                BlocProvider.of<DictionaryBloc>(context)
+                    .add(ClearMeaning());
               },
             ),
             SizedBox(width: 40),
@@ -112,41 +111,20 @@ class _CustomCanvasState extends State<CustomCanvas> {
     );
   }
 
-  void _detectText() async {
+  Future<File> _getDrawnImage() async {
     final sign = _sign.currentState;
     final image = await sign.getData();
-    var data = await image.toByteData(format: ui.ImageByteFormat.png);
+    final data = await image.toByteData(format: ui.ImageByteFormat.png);
 
-    setState(() {
-      _img = data;
-    });
-
-    // Temporary saving file
     final directory = await getApplicationDocumentsDirectory();
-    final imageFile = File('${directory.path}/my_file.jpg');
+    final imageFile = File('${directory.path}/drawn_word.jpg');
     await imageFile.writeAsBytes(
         data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
-    FirebaseVisionImage firebaseVisionImage =
-        FirebaseVisionImage.fromFile(imageFile);
-
-    TextRecognizer textRecogniser = FirebaseVision.instance.textRecognizer();
-    VisionText visionText =
-        await textRecogniser.processImage(firebaseVisionImage);
-    for (TextBlock textBlock in visionText.blocks) {
-      for (TextLine line in textBlock.lines) {
-        for (TextElement word in line.elements) {
-          print('word ${word.text}');
-        }
-      }
-    }
+    return imageFile;
   }
 }
 
-
-
-
 class _WatermarkPaint extends CustomPainter {
-
   @override
   void paint(ui.Canvas canvas, ui.Size size) {}
 
