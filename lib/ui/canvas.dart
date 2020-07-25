@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:dictionary/ui/background.dart';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +7,6 @@ import 'package:flutter_signature_pad/flutter_signature_pad.dart';
 import 'dart:ui' as ui;
 
 import 'package:hexcolor/hexcolor.dart';
-import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
 class CustomCanvas extends StatefulWidget {
@@ -19,7 +16,6 @@ class CustomCanvas extends StatefulWidget {
 
 class _CustomCanvasState extends State<CustomCanvas> {
   ByteData _img = ByteData(0);
-
   var color = Colors.blueAccent;
 
   var strokeWidth = 5.0;
@@ -77,7 +73,7 @@ class _CustomCanvasState extends State<CustomCanvas> {
           child: Signature(
             key: _sign,
             color: color,
-            backgroundPainter: _WatermarkPaint("2.0", "2.0"),
+            backgroundPainter: _WatermarkPaint(),
             strokeWidth: strokeWidth,
           ),
         ),
@@ -93,8 +89,8 @@ class _CustomCanvasState extends State<CustomCanvas> {
           children: <Widget>[
             IconButton(
                 icon: Icon(Icons.search, size: 40, color: Hexcolor('3f51b5')),
-                onPressed: () async {
-                  _detectText();
+                onPressed: ()  {
+//                  _detectText();
                 }),
             SizedBox(width: 10),
             IconButton(
@@ -150,10 +146,6 @@ class _CustomCanvasState extends State<CustomCanvas> {
 
 
 class _WatermarkPaint extends CustomPainter {
-  final String price;
-  final String watermark;
-
-  _WatermarkPaint(this.price, this.watermark);
 
   @override
   void paint(ui.Canvas canvas, ui.Size size) {}
@@ -162,15 +154,4 @@ class _WatermarkPaint extends CustomPainter {
   bool shouldRepaint(_WatermarkPaint oldDelegate) {
     return oldDelegate != this;
   }
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is _WatermarkPaint &&
-          runtimeType == other.runtimeType &&
-          price == other.price &&
-          watermark == other.watermark;
-
-  @override
-  int get hashCode => price.hashCode ^ watermark.hashCode;
 }
