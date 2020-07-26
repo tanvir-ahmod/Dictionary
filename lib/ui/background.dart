@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class Background extends StatelessWidget {
-  static final bluishColor = Hexcolor('#5e35b1');
+  static final bluishColor = Hexcolor('#303f9f');
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,11 +17,11 @@ class Background extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 SizedBox(
-                  height: 70,
+                  height: MediaQuery.of(context).size.height / 8
                 ),
                 Text(
                   'Dictionary',
-                  style: TextStyle(fontSize: 34.0, color: Colors.white),
+                  style: TextStyle(fontSize: 24.0, color: Colors.white),
                 ),
               ],
             )),

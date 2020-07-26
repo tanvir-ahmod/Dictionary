@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
       padding: EdgeInsets.only(left: 24.0, right: 24.0),
       margin: EdgeInsets.only(top: 150),
       child: CustomCanvas(),
-      height: 400.0,
+      height: MediaQuery.of(context).size.height / 2.5,
     );
   }
 
@@ -67,23 +67,21 @@ class _MyHomePageState extends State<MyHomePage> {
             : Container(
                 color: Hexcolor(Constants.MEANING_BACKGROUND_COLOR),
                 width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.only(top: 20, left: 24, right: 24),
-                padding: EdgeInsets.all(50),
-                child: Row(
-                  children: <Widget>[
-                    Text(
-                      '${state.textKey}: ${state.textMeaning}',
-                      style: TextStyle(fontSize: 30, color: Colors.white),
-                    ),
-                  ],
+                margin: EdgeInsets.only(top: 30, left: 24, right: 24),
+                padding: EdgeInsets.all(20),
+                child: Expanded(
+                  child: Text(
+                    '${state.textKey} : ${state.textMeaning}',
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
                 ),
               );
       }
       if (state is NoMeaningFoundState) {
         if (state.textKey == null || state.textKey.isEmpty) {
-          return _notFoundWidget("Could not detect text");
+          return _notFoundWidget("Could not detect text!");
         } else
-          return _notFoundWidget("No meaning found");
+          return _notFoundWidget("No meaning found!");
       }
       return Container();
     });
@@ -130,15 +128,15 @@ class _MyHomePageState extends State<MyHomePage> {
     return Container(
       color: Colors.red,
       width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.only(top: 20, left: 24, right: 24),
-      padding: EdgeInsets.all(50),
-      child: Row(
-        children: <Widget>[
-          Text(
+      margin: EdgeInsets.only(top: 30, left: 24, right: 24),
+      padding: EdgeInsets.all(20),
+      child: Center(
+        child: Expanded(
+          child: Text(
             text,
-            style: TextStyle(fontSize: 30, color: Colors.white),
+            style: TextStyle(fontSize: 20, color: Colors.white),
           ),
-        ],
+        ),
       ),
     );
   }

@@ -16,7 +16,6 @@ class CustomCanvas extends StatefulWidget {
   _CustomCanvasState createState() => _CustomCanvasState();
 }
 
-
 class _CustomCanvasState extends State<CustomCanvas> {
   final _sign = GlobalKey<SignatureState>();
 
@@ -35,31 +34,26 @@ class _CustomCanvasState extends State<CustomCanvas> {
         ],
       ),
       child: Column(children: <Widget>[
-        SizedBox(
-          height: 10,
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
               'English',
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 20),
             ),
-            SizedBox(width: 50),
+            SizedBox(width: 20),
             Icon(
               Icons.arrow_right,
               size: 50,
             ),
-            SizedBox(width: 50),
+            SizedBox(width: 20),
             Text(
               'Bangla',
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 20),
             )
           ],
         ),
-        SizedBox(
-          height: 5,
-        ),
+
         Divider(
           color: Colors.black12,
           height: 1,
@@ -86,26 +80,24 @@ class _CustomCanvasState extends State<CustomCanvas> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             IconButton(
-                icon: Icon(Icons.search, size: 40, color: Hexcolor(Constants.BUTTON_BACKGROUND_COLOR)),
+                icon: Icon(Icons.search,
+                    size: 30,
+                    color: Hexcolor(Constants.BUTTON_BACKGROUND_COLOR)),
                 onPressed: () async {
                   File imageFile = await _getDrawnImage();
                   BlocProvider.of<DictionaryBloc>(context)
                       .add(GetMeaning(imageFile));
                 }),
-            SizedBox(width: 10),
             IconButton(
-              icon: Icon(Icons.clear, size: 40, color: Hexcolor(Constants.BUTTON_BACKGROUND_COLOR)),
+              icon: Icon(Icons.clear,
+                  size: 30, color: Hexcolor(Constants.BUTTON_BACKGROUND_COLOR)),
               onPressed: () {
                 _sign.currentState.clear();
-                BlocProvider.of<DictionaryBloc>(context)
-                    .add(ClearMeaning());
+                BlocProvider.of<DictionaryBloc>(context).add(ClearMeaning());
               },
             ),
-            SizedBox(width: 40),
+            SizedBox(width: 20),
           ],
-        ),
-        SizedBox(
-          height: 5,
         ),
       ]),
     );
