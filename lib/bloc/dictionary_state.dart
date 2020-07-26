@@ -13,3 +13,8 @@ class MeaningDetectedState extends DictionaryState {
   MeaningDetectedState({String textKey, String textMeaning})
       : super(textKey: textKey, textMeaning: textMeaning);
 }
+
+class NoMeaningFoundState extends DictionaryState {
+  NoMeaningFoundState({String textKey, String textMeaning})
+      : super(textKey: textKey, textMeaning: textMeaning);
+}

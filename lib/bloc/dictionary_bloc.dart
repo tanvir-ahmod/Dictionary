@@ -41,9 +41,16 @@ class DictionaryBloc extends Bloc<DictionaryEvent, DictionaryState> {
       GetMeaning getMeaningEvent) async* {
     Map<String, String> textMeaning =
         await repository.getMeaning(getMeaningEvent.imageFile);
-    print('text meaning $textMeaning');
-    yield MeaningDetectedState(
-        textKey: textMeaning[Constants.TEXT_KEY],
-        textMeaning: textMeaning[Constants.TEXT_MEANING]);
+
+    if (textMeaning[Constants.TEXT_MEANING] == null ||
+        textMeaning[Constants.TEXT_MEANING] == null) {
+      yield NoMeaningFoundState(
+          textKey: textMeaning[Constants.TEXT_KEY],
+          textMeaning: textMeaning[Constants.TEXT_MEANING]);
+    } else {
+      yield MeaningDetectedState(
+          textKey: textMeaning[Constants.TEXT_KEY],
+          textMeaning: textMeaning[Constants.TEXT_MEANING]);
+    }
   }
 }
