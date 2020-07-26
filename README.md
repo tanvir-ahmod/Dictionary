@@ -18,10 +18,7 @@ For android you need to provide own `google-services.json` file. It is explained
      * [flutter_bloc](https://pub.dev/packages/flutter_bloc): a predictable state management library for Dart.
 
 ## Screenshots
-<img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/demo.gif" height="400" width="200">
-<img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/Screenshot_2020-07-26-12-36-20-056_com.example.dictionary.jpg" height="400" width="200">
-<img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/Screenshot_2020-07-26-12-35-51-602_com.example.dictionary.jpg" height="400" width="200">
-<img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/Screenshot_2020-07-26-12-35-58-695_com.example.dictionary.jpg" height="400" width="200">
+<img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/demo.gif" height="400" width="200"><img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/Screenshot_2020-07-26-12-36-20-056_com.example.dictionary.jpg" height="400" width="200"><img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/Screenshot_2020-07-26-12-35-51-602_com.example.dictionary.jpg" height="400" width="200"><img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/Screenshot_2020-07-26-12-35-58-695_com.example.dictionary.jpg" height="400" width="200">
 
 
 ## License
