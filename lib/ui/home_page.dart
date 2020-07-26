@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
             builder: (context, state) {
               if (state is InitiatingDatabase) {
                 return _onLoading();
-              } else if (state is InitiatedDatabaseState) {
+              } else {
                 return Align(
                     alignment: Alignment.topCenter,
                     child: Column(
@@ -42,8 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ));
               }
-
-              return Container();
             },
           ),
         ],
