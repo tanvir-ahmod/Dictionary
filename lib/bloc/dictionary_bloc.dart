@@ -27,6 +27,7 @@ class DictionaryBloc extends Bloc<DictionaryEvent, DictionaryState> {
     if (event is InitiateDatabase) {
       bool isFirstTime = await repository.isFirstTime();
       if (isFirstTime) {
+        yield InitiatingDatabase();
         await repository.initializeDatabase();
         yield InitiatedDatabaseState();
       }

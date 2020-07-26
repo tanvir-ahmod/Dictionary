@@ -30,15 +30,20 @@ class _MyHomePageState extends State<MyHomePage> {
           Background(),
           BlocBuilder<DictionaryBloc, DictionaryState>(
             builder: (context, state) {
-              return Align(
-                  alignment: Alignment.topCenter,
-                  child: Column(
-                    children: <Widget>[
-                      _getCanvasWidget(),
-                      _getMeaningWidget(),
-                      _getHistoryWidget()
-                    ],
-                  ));
+              if (state is InitiatingDatabase) {
+                return _onLoading();
+              } else if (state is InitiatedDatabaseState) {
+                return Align(
+                    alignment: Alignment.topCenter,
+                    child: Column(
+                      children: <Widget>[
+                        _getCanvasWidget(),
+                        _getMeaningWidget(),
+                      ],
+                    ));
+              }
+
+              return Container();
             },
           ),
         ],
@@ -79,12 +84,24 @@ class _MyHomePageState extends State<MyHomePage> {
       if (state is NoMeaningFoundState) {
         if (state.textKey == null || state.textKey.isEmpty) {
           return _notFoundWidget("Could not detect text");
-        }
-        else
+        } else
           return _notFoundWidget("No meaning found");
       }
       return Container();
     });
+  }
+
+  Widget _onLoading() {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CircularProgressIndicator(),
+          SizedBox(height: 10),
+          Text("Initiating Database..."),
+        ],
+      ),
+    );
   }
 
   Widget _getHistoryWidget() {

@@ -7,6 +7,8 @@ abstract class DictionaryState {
 
 class InitialState extends DictionaryState {}
 
+class InitiatingDatabase extends DictionaryState {}
+
 class InitiatedDatabaseState extends DictionaryState {}
 
 class MeaningDetectedState extends DictionaryState {
