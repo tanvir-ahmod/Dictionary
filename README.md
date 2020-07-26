@@ -1,16 +1,19 @@
-# dictionary
+# Dictionary
 
-A new Flutter application.
+A Flutter dictionary application where you can write in english and get the meaning in bangla. The writing process here is not typing rater than its drawing. you can draw a text and the corresponding meaning will be shown to you. 
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+For android you need to provide own `google-services.json` file. It is explained in [codelab](https://codelabs.developers.google.com/codelabs/flutter-firebase/#4) and [here](https://firebase.google.com/docs/android/setup?authuser=0).
 
-A few resources to get you started if this is your first Flutter project:
+## Technology Used
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Dart (Primary Language)
+* Architecture : **BLoC**
+* Libraries: 
+     * [flutter_signature_pad](https://pub.dev/packages/flutter_signature_pad) : To make the canvas to draw
+     * [firebase_ml_vision](https://pub.dev/packages/firebase_ml_vision) : To detect the text from the drawn image.
+     * [Hive](https://pub.dev/packages/hive) : To store and retrieve bangla meaning of the text.
+     * [shared_preferences](https://pub.dev/packages/shared_preferences): To check if the app is launched for the first time so that from words.txt, the database can be initialized.
+     * [flutter_bloc](https://pub.dev/packages/flutter_bloc): a predictable state management library for Dart.
+      
