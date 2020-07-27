@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import 'package:dictionary/bloc/dictionary_event.dart';
-import 'package:dictionary/bloc/dictionary_state.dart';
+import 'package:dictionary/bloc/dictionary/dictionary_event.dart';
+import 'package:dictionary/bloc/dictionary/dictionary_state.dart';
+import 'package:dictionary/bloc/history/history_bloc.dart';
 import 'package:dictionary/repository/dictionary_repository.dart';
 import 'package:dictionary/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DictionaryBloc extends Bloc<DictionaryEvent, DictionaryState> {
   final DictionaryRepository repository;
+
+//  HistoryBloc historyBloc;
 
   final _dictionaryController = StreamController<String>();
 

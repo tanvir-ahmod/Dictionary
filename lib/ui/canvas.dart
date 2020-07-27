@@ -1,7 +1,10 @@
 import 'dart:io';
 
-import 'package:dictionary/bloc/dictionary_bloc.dart';
-import 'package:dictionary/bloc/dictionary_event.dart';
+import 'package:dictionary/bloc/dictionary/dictionary_bloc.dart';
+import 'package:dictionary/bloc/dictionary/dictionary_event.dart';
+import 'package:dictionary/bloc/history/history_bloc.dart';
+import 'package:dictionary/bloc/history/history_event.dart';
+import 'package:dictionary/model/history.dart';
 import 'package:dictionary/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,7 +56,6 @@ class _CustomCanvasState extends State<CustomCanvas> {
             )
           ],
         ),
-
         Divider(
           color: Colors.black12,
           height: 1,
