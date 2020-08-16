@@ -6,6 +6,13 @@ A Flutter dictionary application where you can write in english and get the mean
 
 For android you need to provide own `google-services.json` file. It is explained in [codelab](https://codelabs.developers.google.com/codelabs/flutter-firebase/#4) and [here](https://firebase.google.com/docs/android/setup?authuser=0).
 
+Run following commands after cloning this repository:
+```
+$ flutter pub get
+$ flutter pub run build_runner build
+$ flutter run
+```
+
 ## Technology Used
 
 * Dart (Primary Language)
@@ -23,4 +30,4 @@ For android you need to provide own `google-services.json` file. It is explained
 
 ## License
 
-The code base is [GNU GENERAL PUBLIC LICENSE v3.0](https://github.com/tanvir-ahmod/Dictionary/blob/master/LICENSE)
+The code base is under [GNU GENERAL PUBLIC LICENSE v3.0](https://github.com/tanvir-ahmod/Dictionary/blob/master/LICENSE)
