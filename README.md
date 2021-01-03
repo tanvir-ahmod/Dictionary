@@ -24,8 +24,11 @@ $ flutter run
      * [shared_preferences](https://pub.dev/packages/shared_preferences): To check if the app is launched for the first time so that from words.txt, the database can be initialized.
      * [flutter_bloc](https://pub.dev/packages/flutter_bloc): a predictable state management library for Dart.
 
+## Demo
+<img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/demo.gif" height="400" width="200">
+
 ## Screenshots
-<img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/demo.gif" height="400" width="200"><img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/Screenshot_2020-07-26-12-36-20-056_com.example.dictionary.jpg" height="400" width="200"><img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/Screenshot_2020-07-26-12-35-51-602_com.example.dictionary.jpg" height="400" width="200"><img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/Screenshot_2020-07-26-12-35-58-695_com.example.dictionary.jpg" height="400" width="200">
+<img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/Screenshot_2020-07-26-12-36-20-056_com.example.dictionary.jpg" height="400" width="200"><img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/Screenshot_2020-07-26-12-35-51-602_com.example.dictionary.jpg" height="400" width="200"><img src="https://github.com/tanvir-ahmod/Dictionary/blob/master/screenshots/Screenshot_2020-07-26-12-35-58-695_com.example.dictionary.jpg" height="400" width="200">
 
 
 ## License
